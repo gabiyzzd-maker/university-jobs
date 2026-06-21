@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1>Profesores</h1>
+
+<form class="formulario" method="post" action="{{ url_for('agregar_profesor') }}">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="email" name="email" placeholder="Email">
+    <button type="submit">Agregar</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profesor in profesores %}
+        <tr>
+            <td>{{ profesor[0] }}</td>
+            <td>{{ profesor[1] }}</td>
+            <td>{{ profesor[2] }}</td>
+            <td><a class="danger" href="{{ url_for('eliminar_profesor', id=profesor[0]) }}">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

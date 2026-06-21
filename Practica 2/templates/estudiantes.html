@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1>Estudiantes</h1>
+
+<form class="formulario" method="post" action="{{ url_for('agregar_estudiante') }}">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <select name="carrera_id">
+        <option value="">Sin carrera</option>
+        {% for carrera in carreras %}
+        <option value="{{ carrera[0] }}">{{ carrera[1] }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Agregar</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Carrera</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for estudiante in estudiantes %}
+        <tr>
+            <td>{{ estudiante[0] }}</td>
+            <td>{{ estudiante[1] }}</td>
+            <td>{{ estudiante[2] }}</td>
+            <td>{{ estudiante[3] }}</td>
+            <td><a class="danger" href="{{ url_for('eliminar_estudiante', id=estudiante[0]) }}">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

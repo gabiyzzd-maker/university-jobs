@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Academico</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% if session.usuario %}
+    <nav>
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a href="{{ url_for('carreras') }}">Carreras</a>
+        <a href="{{ url_for('profesores') }}">Profesores</a>
+        <a href="{{ url_for('estudiantes') }}">Estudiantes</a>
+        <a href="{{ url_for('cursos') }}">Cursos</a>
+        <a href="{{ url_for('reporte') }}">Exportar Excel</a>
+        <a href="{{ url_for('logout') }}">Cerrar sesion</a>
+    </nav>
+    {% endif %}
+    <main>
+        {% block contenido %}{% endblock %}
+    </main>
+</body>
+</html>
